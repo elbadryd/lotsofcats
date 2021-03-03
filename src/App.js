@@ -6,7 +6,7 @@ import startercats from "./util/startercats";
 
 
 const App = ({ initialCatList }) => {
-  const [currentCat, setCurrentCat] = useState({})
+  const [currentCat, setCurrentCat] = useState({});
   const [catList, setCatList] = useState(initialCatList || startercats);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -18,7 +18,7 @@ const App = ({ initialCatList }) => {
 
     const deleteCat = ({ ID }) => {
       const newCatList = catList.filter((cat) => cat.ID !== ID);
-      setCatList(newCatList)
+      setCatList(newCatList);
       // updates local storage on delete
       window.localStorage.setItem("catList", JSON.stringify(newCatList));
     }
@@ -31,7 +31,7 @@ const App = ({ initialCatList }) => {
         }
         return cat;
       })
-      setCatList(newCatList)
+      setCatList(newCatList);
       window.localStorage.setItem("catList", JSON.stringify(newCatList));
     }, [currentCat])
 

@@ -26,7 +26,6 @@ const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat, catList }) =>
             <button
               type="button"
               className="close"
-              data-dismiss="modal"
               aria-label="Close"
               onClick={() => setEditMode(false)}
             >

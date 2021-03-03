@@ -9,11 +9,11 @@ const DeleteCatModal = ({ deleteMode, setDeleteMode, cat, confirmDelete, setCurr
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h4 className="modal-title">Modal title</h4>
+            <h4 className="modal-title">Confirm Delete</h4>
             <button
               type="button"
               className="close"
-              data-dismiss="modal"
+              // data-dismiss="modal"
               aria-label="Close"
               onClick={() => setDeleteMode(false)}
             >
@@ -34,9 +34,9 @@ const DeleteCatModal = ({ deleteMode, setDeleteMode, cat, confirmDelete, setCurr
             <button
               className="btn btn-danger m-2"
               onClick={() => {
-                setDeleteMode(false)
-                setCurrentCat({})
-                confirmDelete(cat)
+                setDeleteMode(false);
+                setCurrentCat({});
+                confirmDelete(cat);
               }}
             >
               Confirm
