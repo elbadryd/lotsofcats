@@ -13,7 +13,6 @@ const DeleteCatModal = ({ deleteMode, setDeleteMode, cat, confirmDelete, setCurr
             <button
               type="button"
               className="close"
-              // data-dismiss="modal"
               aria-label="Close"
               onClick={() => setDeleteMode(false)}
             >
