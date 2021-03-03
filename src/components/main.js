@@ -9,35 +9,40 @@ const Main = ({ currentCat, setCurrentCat, deleteCat, catList }) => {
   return (
     <div>
       {editMode && (
-      <EditCatModal
-        editMode={editMode}
-        setEditMode={setEditMode}
-        cat={currentCat}
-        setCurrentCat={setCurrentCat}
-        catList={catList}
-      />
+        <EditCatModal
+          editMode={editMode}
+          setEditMode={setEditMode}
+          cat={currentCat}
+          setCurrentCat={setCurrentCat}
+          catList={catList}
+        />
       )}
-      {deleteMode &&  ( 
-      <DeleteCatModal
-        deleteMode={deleteMode}
-        setDeleteMode={setDeleteMode}
-        cat={currentCat}
-        confirmDelete={deleteCat}
-        setCurrentCat={setCurrentCat}
-      />
+      {deleteMode && (
+        <DeleteCatModal
+          deleteMode={deleteMode}
+          setDeleteMode={setDeleteMode}
+          cat={currentCat}
+          confirmDelete={deleteCat}
+          setCurrentCat={setCurrentCat}
+        />
       )}
       {Object.keys(currentCat).length ? (
-        <div className="card">
+        <div className="card bg-info">
+          <div className="card-header d-flex justify-content-center">
+            <h3>{currentCat.name.toUpperCase()}</h3>
+          </div>
           <img
             src={currentCat.thumbnailURL}
             className="card-img catthumb"
-            alt="..."
+            alt="cat thumbnail"
           />
           <div className="card-body">
-            <h5 className="card-text">Name: {currentCat.name}</h5>
+            {/* <h5 className="card-text">Name: {currentCat.name}</h5> */}
             <p className="card-text">Birthdate: {currentCat.birthdate}</p>
             <p className="card-text">Owner: {currentCat.owner}</p>
             <p className="card-text">Views: {currentCat.views}</p>
+          </div>
+          <div className="card-footer d-flex flex-row-reverse">
             <button
               type="button"
               className="btn btn-primary m-2"

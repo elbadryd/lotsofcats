@@ -33,6 +33,15 @@ const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat, catList }) =>
             </button>
           </div>
           <div className="modal-body">
+            <label>Thumbnail URL</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder={cat.thumbnailURL}
+              onChange={(e) => {
+                setNewCat({ ...cat, thumbnailURL: e.target.value });
+              }}
+            />
             <label>Name</label>
             <input
               type="text"
@@ -58,7 +67,7 @@ const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat, catList }) =>
               onChange={(e) => {
                 setNewCat({ ...cat, owner: e.target.value });
               }}
-              value={uniqueOwners.find((owner) => owner === cat.owner)}
+              value={uniqueOwners.find((owner) => owner === newCat.owner)}
             >
               {uniqueOwners.map((owner) => (
                 <option key={owner}>{owner}</option>

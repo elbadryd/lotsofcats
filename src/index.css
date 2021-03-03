@@ -14,16 +14,22 @@ code {
 }
 
 .catitem {
-  cursor: pointer
+  cursor: pointer;
+  border-bottom: 1px solid black;
 }
 .catitem__header{
   align-items: center;
 }
 
 .catthumb{
-  width: 25%;
+  width: 50%;
   margin: 2rem;
   align-self: center;
+  border-radius: 15%;
+}
+
+.catthumbsmall {
+  border-radius: 10%;
 }
 .modal {
   background-color: rgba(0, 0, 0, 0.5);

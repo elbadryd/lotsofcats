@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import SideNav from "./components/sidenav";
 import Main from "./components/main";
+import Search from "./components/search";
 import startercats from "./util/startercats";
 
 
 const App = ({ initialCatList }) => {
   const [currentCat, setCurrentCat] = useState({})
   const [catList, setCatList] = useState(initialCatList || startercats);
+  const [searchTerm, setSearchTerm] = useState('');
 
 
     const incrementCatViewCount = (cat) => {
@@ -34,21 +36,23 @@ const App = ({ initialCatList }) => {
 
   return (
     <div className="container-fluid">
-      <div className="row">
-        <div className="col-4">
+      <div className="row m-4">
+        <div className="col-4 bg-light">
+          <Search
+            setSearchTerm={setSearchTerm}
+          />
           <SideNav
             setCurrentCat={setCurrentCat}
-            catList={catList}
+            catList={searchTerm ? catList.filter((cat) => cat.name.includes(searchTerm)) : catList}
             incrementCatViewCount={incrementCatViewCount}
           />
         </div>
-        <div className="col-8">
-          <Main 
+        <div className="col-6 offset-1">
+          <Main
             currentCat={currentCat}
             setCurrentCat={setCurrentCat}
             deleteCat={deleteCat}
             catList={catList}
-            // owners={catList.map((cat) => cat.owner)}
           />
         </div>
       </div>
