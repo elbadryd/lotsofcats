@@ -8,24 +8,16 @@ const App = ({ initialCatList }) => {
   const [currentCat, setCurrentCat] = useState({})
   const [catList, setCatList] = useState(initialCatList || startercats);
 
-    const saveCatListToLocalStorage = () => {
-      console.log(currentCat, catList)
-      // saves updates to local storage or returns original object
-      // const newCatList = catList.map((cat) => {
-      //   if (cat.ID === currentCat.ID){
-      //     return currentCat
-      //   }
-      //   return cat;
-      // })
-      window.localStorage.setItem('catList', JSON.stringify(catList));
-    };
-
 
     const incrementCatViewCount = (cat) => {
       cat.views+=1;
-      // setCurrentCat(currentCat);
-      // updateCatList()
       setCurrentCat(cat);
+    }
+
+    const deleteCat = ({ ID }) => {
+      const newCatList = catList.filter((cat) => cat.ID !== ID);
+      setCatList(newCatList)
+      window.localStorage.setItem("catList", JSON.stringify(newCatList));
     }
 
     useEffect(() => {
@@ -35,11 +27,10 @@ const App = ({ initialCatList }) => {
         }
         return cat;
       })
-      console.log(newCatList)
       setCatList(newCatList)
+      window.localStorage.setItem("catList", JSON.stringify(newCatList));
     }, [currentCat])
 
-    useEffect(() => saveCatListToLocalStorage, [catList, saveCatListToLocalStorage, currentCat]);
 
   return (
     <div className="container-fluid">
@@ -47,7 +38,6 @@ const App = ({ initialCatList }) => {
         <div className="col-4">
           <SideNav
             setCurrentCat={setCurrentCat}
-            // updateCatProperty={updateCatProperty}
             catList={catList}
             incrementCatViewCount={incrementCatViewCount}
           />
@@ -56,6 +46,9 @@ const App = ({ initialCatList }) => {
           <Main 
             currentCat={currentCat}
             setCurrentCat={setCurrentCat}
+            deleteCat={deleteCat}
+            catList={catList}
+            // owners={catList.map((cat) => cat.owner)}
           />
         </div>
       </div>

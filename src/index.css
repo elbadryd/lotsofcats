@@ -16,9 +16,15 @@ code {
 .catitem {
   cursor: pointer
 }
+.catitem__header{
+  align-items: center;
+}
 
 .catthumb{
-  width: 15%;
-  margin-left: 1.5rem;
-  margin-top: 1.5rem;
+  width: 25%;
+  margin: 2rem;
+  align-self: center;
+}
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
 }

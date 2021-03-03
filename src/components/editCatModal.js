@@ -1,9 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat }) => {
+const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat, catList }) => {
   const [newCat, setNewCat] = useState(cat);
-  console.log(newCat, cat);
-  useEffect(() => setNewCat(cat), [cat, setNewCat])
+
+  const owners = catList.map((cat) => cat.owner);
+  const uniqueOwners = [];
+  owners.forEach((owner) => {
+    if (uniqueOwners.indexOf(owner) < 0) {
+      uniqueOwners.push(owner)
+    }
+  });
+
   return (
     <div
       className="modal"
@@ -14,15 +21,16 @@ const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat }) => {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
+            <h4 className="modal-title">Edit Cat</h4>
             <button
               type="button"
               className="close"
               data-dismiss="modal"
               aria-label="Close"
+              onClick={() => setEditMode(false)}
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 className="modal-title">Modal title</h4>
           </div>
           <div className="modal-body">
             <label>Name</label>
@@ -40,33 +48,36 @@ const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat }) => {
               className="form-control"
               value={newCat.birthdate}
               onChange={(e) => {
-                console.log(e.target.value)
-                setNewCat({...cat, birthdate: e.target.value})
+                console.log(e.target.value);
+                setNewCat({ ...cat, birthdate: e.target.value });
               }}
             />
             <label>Owner</label>
-            <input
-              type="text"
+            <select
               className="form-control"
-              placeholder={newCat.owner}
               onChange={(e) => {
                 setNewCat({ ...cat, owner: e.target.value });
               }}
-            />
+              value={uniqueOwners.find((owner) => owner === cat.owner)}
+            >
+              {uniqueOwners.map((owner) => (
+                <option key={owner}>{owner}</option>
+              ))}
+            </select>
           </div>
           <div className="modal-footer">
             <button
-              className="btn btn-default"
+              className="btn btn-default m-2"
               onClick={() => setEditMode(false)}
             >
               Close
             </button>
 
             <button
-              className="btn btn-primary"
+              className="btn btn-primary m-2"
               onClick={() => {
-                setEditMode(false)
-                setCurrentCat(newCat)
+                setEditMode(false);
+                setCurrentCat(newCat);
               }}
             >
               Save Changes

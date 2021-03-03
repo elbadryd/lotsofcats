@@ -1,15 +1,31 @@
 import { useState } from "react";
 import EditCatModal from "./editCatModal";
-const Main = ({ currentCat, setCurrentCat }) => {
+import DeleteCatModal from "./deleteCatModal";
+
+const Main = ({ currentCat, setCurrentCat, deleteCat, catList }) => {
   const [editMode, setEditMode] = useState(false);
+  const [deleteMode, setDeleteMode] = useState(false);
+
   return (
     <div>
-      <EditCatModal 
+      {editMode && (
+      <EditCatModal
         editMode={editMode}
         setEditMode={setEditMode}
         cat={currentCat}
         setCurrentCat={setCurrentCat}
-        />
+        catList={catList}
+      />
+      )}
+      {deleteMode &&  ( 
+      <DeleteCatModal
+        deleteMode={deleteMode}
+        setDeleteMode={setDeleteMode}
+        cat={currentCat}
+        confirmDelete={deleteCat}
+        setCurrentCat={setCurrentCat}
+      />
+      )}
       {Object.keys(currentCat).length ? (
         <div className="card">
           <img
@@ -24,12 +40,20 @@ const Main = ({ currentCat, setCurrentCat }) => {
             <p className="card-text">Views: {currentCat.views}</p>
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary m-2"
               data-toggle="modal"
               data-target="#editCatModal"
               onClick={() => setEditMode(true)}
             >
-              Go somewhere
+              Edit
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger m-2"
+              data-toggle="modal"
+              onClick={() => setDeleteMode(true)}
+            >
+              Delete
             </button>
           </div>
         </div>
