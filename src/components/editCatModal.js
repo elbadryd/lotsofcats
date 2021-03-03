@@ -4,6 +4,7 @@ const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat, catList }) =>
   const [newCat, setNewCat] = useState(cat);
 
   const owners = catList.map((cat) => cat.owner);
+  // prevents owners fromshowing up twice in list
   const uniqueOwners = [];
   owners.forEach((owner) => {
     if (uniqueOwners.indexOf(owner) < 0) {
@@ -37,7 +38,7 @@ const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat, catList }) =>
             <input
               type="text"
               className="form-control"
-              placeholder={cat.thumbnailURL}
+              value={newCat.thumbnailURL}
               onChange={(e) => {
                 setNewCat({ ...cat, thumbnailURL: e.target.value });
               }}
@@ -46,7 +47,7 @@ const EditCatModal = ({ editMode, setEditMode, cat, setCurrentCat, catList }) =>
             <input
               type="text"
               className="form-control"
-              placeholder={newCat.name}
+              value={newCat.name}
               onChange={(e) => {
                 setNewCat({ ...cat, name: e.target.value });
               }}

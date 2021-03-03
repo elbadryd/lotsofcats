@@ -19,10 +19,12 @@ const App = ({ initialCatList }) => {
     const deleteCat = ({ ID }) => {
       const newCatList = catList.filter((cat) => cat.ID !== ID);
       setCatList(newCatList)
+      // updates local storage on delete
       window.localStorage.setItem("catList", JSON.stringify(newCatList));
     }
 
     useEffect(() => {
+      // updates list with changes to cat in view prior to saving
       const newCatList = catList.map((cat) => {
         if (cat.ID === currentCat.ID){
           return currentCat
@@ -43,6 +45,7 @@ const App = ({ initialCatList }) => {
           />
           <SideNav
             setCurrentCat={setCurrentCat}
+            // not updating state object on filter change to ensure that edits are properly saved even if search term is present
             catList={searchTerm ? catList.filter((cat) => cat.name.includes(searchTerm)) : catList}
             incrementCatViewCount={incrementCatViewCount}
           />

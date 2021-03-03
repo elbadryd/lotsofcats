@@ -5,6 +5,7 @@ const SideNav = ({ setCurrentCat, catList, incrementCatViewCount }) => {
       <div
         className="catitem m-3"
         key={cat.ID}
+        // sets selcted cat to display in main view and adds to view counter
         onClick={() => {
           setCurrentCat(cat);
           incrementCatViewCount(cat);

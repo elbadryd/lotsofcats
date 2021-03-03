@@ -8,6 +8,7 @@ const Main = ({ currentCat, setCurrentCat, deleteCat, catList }) => {
 
   return (
     <div>
+      {/* used some trickery here to use regular bootstrap rather than react-strap or react-bootstrap */}
       {editMode && (
         <EditCatModal
           editMode={editMode}
@@ -46,7 +47,6 @@ const Main = ({ currentCat, setCurrentCat, deleteCat, catList }) => {
               type="button"
               className="btn btn-primary m-2"
               data-toggle="modal"
-              data-target="#editCatModal"
               onClick={() => setEditMode(true)}
             >
               Edit

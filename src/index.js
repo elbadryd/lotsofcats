@@ -6,8 +6,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// attempts to find catlist inlocal storage, otherside starter array is loaded in app.js;
 const initialCatList = window.localStorage.getItem("catList");
-console.log('loading')
 
 ReactDOM.render(
   <React.StrictMode>
