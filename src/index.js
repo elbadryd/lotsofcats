@@ -6,9 +6,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const initialCatList = window.localStorage.getItem("catList");
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App initialCatList={initialCatList ? JSON.parse(initialCatList) : null} />
   </React.StrictMode>,
   document.getElementById('root')
 );

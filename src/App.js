@@ -3,9 +3,10 @@ import SideNav from "./components/sidenav";
 import Main from "./components/main";
 import startercats from "./util/startercats";
 
-const App = () => {
+const App = ({ initialCatList }) => {
+  console.log(initialCatList);
   const [currentCat, setCurrentCat] = useState({})
-    const [catList, setCatList] = useState(startercats);
+    const [catList, setCatList] = useState(initialCatList || startercats);
 
     const updateCatList = (list) => {
       window.localStorage.setItem('catList', JSON.stringify(catList));
