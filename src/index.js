@@ -7,6 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const initialCatList = window.localStorage.getItem("catList");
+console.log('loading')
 
 ReactDOM.render(
   <React.StrictMode>

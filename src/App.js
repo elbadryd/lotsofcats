@@ -3,29 +3,43 @@ import SideNav from "./components/sidenav";
 import Main from "./components/main";
 import startercats from "./util/startercats";
 
-const App = ({ initialCatList }) => {
-  console.log(initialCatList);
-  const [currentCat, setCurrentCat] = useState({})
-    const [catList, setCatList] = useState(initialCatList || startercats);
 
-    const updateCatList = (list) => {
+const App = ({ initialCatList }) => {
+  const [currentCat, setCurrentCat] = useState({})
+  const [catList, setCatList] = useState(initialCatList || startercats);
+
+    const saveCatListToLocalStorage = () => {
+      console.log(currentCat, catList)
+      // saves updates to local storage or returns original object
+      // const newCatList = catList.map((cat) => {
+      //   if (cat.ID === currentCat.ID){
+      //     return currentCat
+      //   }
+      //   return cat;
+      // })
       window.localStorage.setItem('catList', JSON.stringify(catList));
-      setCatList(list);
     };
 
-    // const updateCatProperty = (key, value) => {
-    //   const newCatList = catList;
-    //   newCatList[id][key] = value;
-    //   updateCatList(newCatList);
-    // }
 
     const incrementCatViewCount = (cat) => {
-      cat.views+=1
+      cat.views+=1;
+      // setCurrentCat(currentCat);
+      // updateCatList()
       setCurrentCat(cat);
     }
 
-    // useEffect(() => incriementCatViewCount(currentCat), [currentCat, incriementCatViewCount])
-    useEffect(() => updateCatList(catList), [catList, updateCatList, currentCat]);
+    useEffect(() => {
+      const newCatList = catList.map((cat) => {
+        if (cat.ID === currentCat.ID){
+          return currentCat
+        }
+        return cat;
+      })
+      console.log(newCatList)
+      setCatList(newCatList)
+    }, [currentCat])
+
+    useEffect(() => saveCatListToLocalStorage, [catList, saveCatListToLocalStorage, currentCat]);
 
   return (
     <div className="container-fluid">
@@ -39,7 +53,10 @@ const App = ({ initialCatList }) => {
           />
         </div>
         <div className="col-8">
-          <Main currentCat={currentCat} />
+          <Main 
+            currentCat={currentCat}
+            setCurrentCat={setCurrentCat}
+          />
         </div>
       </div>
     </div>
