@@ -37,7 +37,6 @@ const Main = ({ currentCat, setCurrentCat, deleteCat, catList }) => {
             alt="cat thumbnail"
           />
           <div className="card-body">
-            {/* <h5 className="card-text">Name: {currentCat.name}</h5> */}
             <p className="card-text">Birthdate: {currentCat.birthdate}</p>
             <p className="card-text">Owner: {currentCat.owner}</p>
             <p className="card-text">Views: {currentCat.views}</p>
